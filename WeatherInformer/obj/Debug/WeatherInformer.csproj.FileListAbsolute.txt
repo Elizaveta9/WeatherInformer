@@ -1,0 +1,12 @@
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\WeatherInformer.exe.config
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\WeatherInformer.exe
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\WeatherInformer.pdb
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.AssemblyReference.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.SuggestedBindingRedirects.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.Properties.Resources.resources
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.GenerateResource.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.CoreCompileInputs.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.exe
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.pdb
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.Form1.resources
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.HelloUserForm.resources
