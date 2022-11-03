@@ -11,10 +11,11 @@ namespace WeatherInformer
         private string city = "";
 
         private DB db = new DB();
+
         public HelloUserForm()
         {
             InitializeComponent();
-            
+
             // cityComboBox.Items.Add("Пенза");
             // cityComboBox.Items.Add("Москва");
             // cityComboBox.Items.Add("Воронеж");
@@ -23,7 +24,7 @@ namespace WeatherInformer
 
             foreach (DataRow row in table.Rows)
             {
-                cityComboBox.Items.Add(row[0]);
+                cityComboBox.Items.Add(row["name"]);
             }
         }
 
@@ -34,6 +35,8 @@ namespace WeatherInformer
             city = cityComboBox.Text;
 
             MessageBox.Show(name + " " + password + " " + city);
+
+            db.AddUser(name, password, city);
         }
 
         private void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
