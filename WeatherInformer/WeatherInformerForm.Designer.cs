@@ -50,6 +50,7 @@ namespace WeatherInformer
             this.Controls.Add(this.label1);
             this.Name = "WeatherInformerForm";
             this.Text = "WeatherInformerForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WeatherInformerForm_FormClosed);
             this.ResumeLayout(false);
         }
 

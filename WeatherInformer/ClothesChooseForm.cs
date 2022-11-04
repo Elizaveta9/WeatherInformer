@@ -16,5 +16,10 @@ namespace WeatherInformer
             this.Hide();
             form.Show();
         }
+
+        private void ClothesChooseForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
