@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 
 namespace WeatherInformer
 {
@@ -7,6 +8,13 @@ namespace WeatherInformer
         public ClothesChooseForm()
         {
             InitializeComponent();
+        }
+
+        private void skipButton_Click(object sender, EventArgs e)
+        {
+            WeatherInformerForm form = new WeatherInformerForm();
+            this.Hide();
+            form.Show();
         }
     }
 }
