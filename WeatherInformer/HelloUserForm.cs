@@ -16,10 +16,6 @@ namespace WeatherInformer
         {
             InitializeComponent();
 
-            // cityComboBox.Items.Add("Пенза");
-            // cityComboBox.Items.Add("Москва");
-            // cityComboBox.Items.Add("Воронеж");
-
             DataTable table = db.GetCities();
 
             foreach (DataRow row in table.Rows)
@@ -34,9 +30,19 @@ namespace WeatherInformer
             password = passwordTextBox.Text;
             city = cityComboBox.Text;
 
-            MessageBox.Show(name + " " + password + " " + city);
-
-            db.AddUser(name, password, city);
+            if ((name != "") && (password != "") && (city != ""))
+            {
+                if (db.AddUser(name, password, city))
+                {
+                    ClothesChooseForm form = new ClothesChooseForm();
+                    this.Hide();
+                    form.Show();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
