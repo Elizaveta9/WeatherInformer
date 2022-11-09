@@ -24,7 +24,6 @@ namespace WeatherInformer
             MatchCollection matches = regex.Matches(html);
             foreach (Match match in matches)
             {
-                
                 label1.Text += match;
             }
             

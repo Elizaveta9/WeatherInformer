@@ -38,6 +38,7 @@ namespace WeatherInformer
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.startButton = new System.Windows.Forms.Button();
+            this.skipRegistrationButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // nameTextBox
@@ -98,11 +99,22 @@ namespace WeatherInformer
             this.startButton.UseVisualStyleBackColor = true;
             this.startButton.Click += new System.EventHandler(this.startButton_Click);
             // 
+            // skipRegistrationButton
+            // 
+            this.skipRegistrationButton.Location = new System.Drawing.Point(107, 26);
+            this.skipRegistrationButton.Name = "skipRegistrationButton";
+            this.skipRegistrationButton.Size = new System.Drawing.Size(254, 39);
+            this.skipRegistrationButton.TabIndex = 8;
+            this.skipRegistrationButton.Text = "Пропустить";
+            this.skipRegistrationButton.UseVisualStyleBackColor = true;
+            this.skipRegistrationButton.Click += new System.EventHandler(this.skipRegistrationButton_Click);
+            // 
             // HelloUserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(491, 408);
+            this.Controls.Add(this.skipRegistrationButton);
             this.Controls.Add(this.startButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -112,9 +124,12 @@ namespace WeatherInformer
             this.Controls.Add(this.nameTextBox);
             this.Name = "HelloUserForm";
             this.Text = "HelloUserForm";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HelloUserForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Button skipRegistrationButton;
 
         private System.Windows.Forms.Button startButton;
 

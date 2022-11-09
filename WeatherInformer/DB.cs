@@ -10,7 +10,18 @@ namespace WeatherInformer
         private SqlConnection connection =
             new SqlConnection("Server=localhost;Database=weather_informer;Trusted_Connection=True");
 
+        private static DB instanceDb;
+
         private DataTable cities = null;
+        
+        private DB(){}
+
+        public static DB getDB()
+        {
+            if (instanceDb == null)
+                instanceDb = new DB();
+            return instanceDb;
+        }
 
         public DataTable GetCities()
         {
@@ -63,7 +74,6 @@ namespace WeatherInformer
                     command.ExecuteNonQuery();
                     connection.Close();
 
-                    MessageBox.Show("user added");
                     result = true;
                 }
             }
@@ -73,6 +83,19 @@ namespace WeatherInformer
             }
 
             return result;
+        }
+
+        public DataTable GetStandartClothes()
+        {
+            DataTable table = new DataTable();
+
+            SqlCommand command = new SqlCommand("SELECT name, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            return table;
         }
     }
 }
