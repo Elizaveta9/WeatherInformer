@@ -11,10 +11,21 @@ namespace WeatherInformer
         public ClothesChooseForm()
         {
             InitializeComponent();
-
             
             clothesTable = db.GetStandartClothes();
             clothesDataGrid.DataSource = clothesTable;
+
+            foreach (DataGridViewColumn column in clothesDataGrid.Columns)
+            {
+                column.ReadOnly = true;
+            }
+            
+            DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
+            checkColumn.ReadOnly = false;
+            checkColumn.HeaderText = "Выбор";
+            checkColumn.FalseValue = "0";
+            checkColumn.TrueValue = "1";
+            clothesDataGrid.Columns.Insert(0, checkColumn);
         }
 
         private void skipButton_Click(object sender, EventArgs e)

@@ -89,7 +89,7 @@ namespace WeatherInformer
         {
             DataTable table = new DataTable();
 
-            SqlCommand command = new SqlCommand("SELECT name, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'", connection);
+            SqlCommand command = new SqlCommand("SELECT name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'", connection);
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             adapter.SelectCommand = command;
