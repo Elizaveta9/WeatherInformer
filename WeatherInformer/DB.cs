@@ -13,8 +13,10 @@ namespace WeatherInformer
         private static DB instanceDb;
 
         private DataTable cities = null;
-        
-        private DB(){}
+
+        private DB()
+        {
+        }
 
         public static DB getDB()
         {
@@ -42,7 +44,7 @@ namespace WeatherInformer
             {
                 //TODO сделать проверку на наличие пользователя, добавить проврку "был ли осуществлён вход на этом компе", заполнены ли все поля
                 //TODO шифровка пароля
-                
+
                 //проверка наличия пользователя
                 SqlCommand commandCheckUser = new SqlCommand("SELECT name FROM users WHERE name = @name", connection);
                 commandCheckUser.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
@@ -89,13 +91,58 @@ namespace WeatherInformer
         {
             DataTable table = new DataTable();
 
-            SqlCommand command = new SqlCommand("SELECT name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'", connection);
+            SqlCommand command =
+                new SqlCommand(
+                    "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'",
+                    connection);
             SqlDataAdapter adapter = new SqlDataAdapter();
 
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
             return table;
+        }
+
+        public void WriteClothesToUser(string userName)
+        {
+        }
+
+        public void WriteStandardClothesToUser(string userName)
+        {
+            int userId = 0;
+            DataTable clothes = GetStandartClothes();
+            SqlCommand command = new SqlCommand("SELECT id FROM users WHERE name = @name", connection);
+            command.Parameters.Add("@name", SqlDbType.VarChar).Value = userName;
+
+            connection.Open();
+            try
+            {
+                SqlDataReader reader = command.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    reader.Read();
+                    userId = reader.GetInt32(0);
+                }
+
+                reader.Close();
+                
+                command = new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)",
+                    connection);
+                command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@clothesId", SqlDbType.Int);
+
+                foreach (DataRow tableRow in clothes.Rows)
+                {
+                    command.Parameters["@clothesId"].Value = tableRow["id"];
+                    command.ExecuteNonQuery();
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+
+            connection.Close();
         }
     }
 }

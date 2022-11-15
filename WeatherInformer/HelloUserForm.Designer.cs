@@ -58,6 +58,7 @@ namespace WeatherInformer
             // 
             // cityComboBox
             // 
+            this.cityComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cityComboBox.FormattingEnabled = true;
             this.cityComboBox.Location = new System.Drawing.Point(235, 274);
             this.cityComboBox.Name = "cityComboBox";

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 
@@ -8,12 +9,16 @@ namespace WeatherInformer
     {
         private DB db = DB.getDB();
         private DataTable clothesTable = null;
-        public ClothesChooseForm()
+        private string userName = "";
+        public ClothesChooseForm(string userName = "Елизавета")
         {
             InitializeComponent();
-            
+
+            this.userName = userName;
             clothesTable = db.GetStandartClothes();
             clothesDataGrid.DataSource = clothesTable;
+
+            clothesDataGrid.Columns["id"].Visible = false;
 
             foreach (DataGridViewColumn column in clothesDataGrid.Columns)
             {
@@ -23,8 +28,6 @@ namespace WeatherInformer
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.ReadOnly = false;
             checkColumn.HeaderText = "Выбор";
-            checkColumn.FalseValue = "0";
-            checkColumn.TrueValue = "1";
             clothesDataGrid.Columns.Insert(0, checkColumn);
         }
 
@@ -39,10 +42,22 @@ namespace WeatherInformer
         {
             Application.Exit();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void chooseStandartClothesButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            db.WriteStandardClothesToUser(userName);
+        }
+
+        private void continueButton_Click(object sender, EventArgs e)
+        {
+            // var checkedRows = new List<DataGridViewRow>();
+            // //собрать чекмарки и присвоить всё юзеру
+            //
+            // foreach (DataGridViewRow row in clothesDataGrid.Rows)
+            // {
+            //     //нужен айдишник
+            //     //if (row.Cells[0].Value == true)
+            // }
         }
     }
 }

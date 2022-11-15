@@ -34,7 +34,7 @@ namespace WeatherInformer
             {
                 if (db.AddUser(name, password, city))
                 {
-                    ClothesChooseForm form = new ClothesChooseForm();
+                    ClothesChooseForm form = new ClothesChooseForm(name);
                     this.Hide();
                     form.Show();
                 }
