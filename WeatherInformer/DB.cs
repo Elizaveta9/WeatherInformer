@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
@@ -98,13 +99,11 @@ namespace WeatherInformer
         public DataTable GetStandartClothes()
         {
             DataTable table = new DataTable();
-
             SqlCommand command =
                 new SqlCommand(
                     "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'",
                     connection);
             SqlDataAdapter adapter = new SqlDataAdapter();
-
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
@@ -114,58 +113,74 @@ namespace WeatherInformer
         public DataTable GetAllClothes()
         {
             DataTable table = new DataTable();
-
             SqlCommand command =
                 new SqlCommand(
                     "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes",
                     connection);
             SqlDataAdapter adapter = new SqlDataAdapter();
-
             adapter.SelectCommand = command;
             adapter.Fill(table);
 
             return table;
         }
 
-        public void WriteClothesToUser(string userName)
+        public void WriteClothesToUser(string userName, List<DataGridViewRow> clothes)
         {
+            int userId = GetUserIdByName(userName);
+
+            if (userId != 0)
+            {
+                SqlCommand command = new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)", connection);
+                command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@clothesId", SqlDbType.Int);
+
+                connection.Open();
+                foreach (DataGridViewRow clothesRow in clothes)
+                {
+                    command.Parameters["@clothesId"].Value = clothesRow.Cells["id"].Value;
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+                MessageBox.Show("Одежда успешно добавлена");
+            }
+            else
+            {
+                MessageBox.Show("Индекс пользователя равен 0");
+            }
         }
 
         public void WriteStandardClothesToUser(string userName)
         {
             int userId = 0;
             DataTable clothes = GetStandartClothes();
-            SqlCommand command = new SqlCommand("SELECT id FROM users WHERE name = @name", connection);
-            command.Parameters.Add("@name", SqlDbType.VarChar).Value = userName;
-
+            
             connection.Open();
             try
             {
-                SqlDataReader reader = command.ExecuteReader();
-                if (reader.HasRows)
+                userId = GetUserIdByName(userName);
+                if (userId != 0)
                 {
-                    reader.Read();
-                    userId = reader.GetInt32(0);
+                    SqlCommand command = new SqlCommand(
+                        "INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)",
+                        connection);
+                    command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
+                    command.Parameters.Add("@clothesId", SqlDbType.Int);
+
+                    foreach (DataRow tableRow in clothes.Rows)
+                    {
+                        command.Parameters["@clothesId"].Value = tableRow["id"];
+                        command.ExecuteNonQuery();
+                    }
                 }
-
-                reader.Close();
-                
-                command = new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)",
-                    connection);
-                command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
-                command.Parameters.Add("@clothesId", SqlDbType.Int);
-
-                foreach (DataRow tableRow in clothes.Rows)
+                else
                 {
-                    command.Parameters["@clothesId"].Value = tableRow["id"];
-                    command.ExecuteNonQuery();
+                    MessageBox.Show("Индекс пользователя равен 0");
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-
             connection.Close();
         }
 
@@ -190,6 +205,25 @@ namespace WeatherInformer
                 MessageBox.Show(e.Message);
             }
             
+        }
+
+        public Int32 GetUserIdByName(string name)
+        {
+            int id = 0;
+            SqlCommand command = new SqlCommand("SELECT id FROM users WHERE name = @name", connection);
+            command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+            
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Read();
+                id = reader.GetInt32(0);
+                
+            }
+            reader.Close();
+            connection.Close();
+            return id;
         }
     }
 }

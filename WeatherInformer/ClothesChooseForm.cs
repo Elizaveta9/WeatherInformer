@@ -27,7 +27,9 @@ namespace WeatherInformer
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.ReadOnly = false;
             checkColumn.HeaderText = "Выбор";
+            checkColumn.Name = "Выбор";
             clothesDataGrid.Columns.Insert(0, checkColumn);
+            
             this.userName = userName;
         }
 
@@ -51,14 +53,20 @@ namespace WeatherInformer
 
         private void continueButton_Click(object sender, EventArgs e)
         {
-            // var checkedRows = new List<DataGridViewRow>();
-            // //собрать чекмарки и присвоить всё юзеру
-            //
-            // foreach (DataGridViewRow row in clothesDataGrid.Rows)
-            // {
-            //     //нужен айдишник
-            //     //if (row.Cells[0].Value == true)
-            // }
+            var checkedRows = new List<DataGridViewRow>();
+
+            //собрать чекмарки и присвоить всё юзеру
+            
+            foreach (DataGridViewRow row in clothesDataGrid.Rows)
+            {
+                //нужен айдишник
+                if (row.Cells["Выбор"].Value.Equals(true))
+                {
+                    checkedRows.Add(row);
+                }
+            }
+            
+            db.WriteClothesToUser(userName, checkedRows);
         }
 
 
@@ -71,6 +79,11 @@ namespace WeatherInformer
         private void ClothesChooseForm_Activated(object sender, EventArgs e)
         {
             InitializeTableClothes();
+            
+            foreach (DataGridViewRow dataGridViewRow in clothesDataGrid.Rows)
+            {
+                dataGridViewRow.Cells["Выбор"].Value = false;
+            }
         }
 
         private void InitializeTableClothes()
