@@ -84,7 +84,7 @@ namespace WeatherInformer
             this.Controls.Add(this.addUserButton);
             this.Controls.Add(this.label1);
             this.Name = "WeatherInformerForm";
-            this.Text = "WeatherInformerForm";
+            this.Text = "Погода";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WeatherInformerForm_FormClosed);
             this.ResumeLayout(false);
         }

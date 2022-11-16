@@ -10,25 +10,25 @@ namespace WeatherInformer
         private DB db = DB.getDB();
         private DataTable clothesTable = null;
         private string userName = "";
+
         public ClothesChooseForm(string userName = "Елизавета")
         {
             InitializeComponent();
 
-            this.userName = userName;
-            clothesTable = db.GetStandartClothes();
-            clothesDataGrid.DataSource = clothesTable;
-
+            InitializeTableClothes();
+            
             clothesDataGrid.Columns["id"].Visible = false;
 
             foreach (DataGridViewColumn column in clothesDataGrid.Columns)
             {
                 column.ReadOnly = true;
             }
-            
+
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.ReadOnly = false;
             checkColumn.HeaderText = "Выбор";
             clothesDataGrid.Columns.Insert(0, checkColumn);
+            this.userName = userName;
         }
 
         private void skipButton_Click(object sender, EventArgs e)
@@ -42,10 +42,11 @@ namespace WeatherInformer
         {
             Application.Exit();
         }
-        
+
         private void chooseStandartClothesButton_Click(object sender, EventArgs e)
         {
             db.WriteStandardClothesToUser(userName);
+            MessageBox.Show("Выбрано");
         }
 
         private void continueButton_Click(object sender, EventArgs e)
@@ -58,6 +59,24 @@ namespace WeatherInformer
             //     //нужен айдишник
             //     //if (row.Cells[0].Value == true)
             // }
+        }
+
+
+        private void addClothesButton_Click(object sender, EventArgs e)
+        {
+            AddClothesForm form = new AddClothesForm();
+            form.ShowDialog();
+        }
+
+        private void ClothesChooseForm_Activated(object sender, EventArgs e)
+        {
+            InitializeTableClothes();
+        }
+
+        private void InitializeTableClothes()
+        {
+            clothesTable = db.GetAllClothes();
+            clothesDataGrid.DataSource = clothesTable;
         }
     }
 }

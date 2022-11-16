@@ -55,6 +55,7 @@ namespace WeatherInformer
             this.passwordTextBox.PasswordChar = '.';
             this.passwordTextBox.Size = new System.Drawing.Size(216, 22);
             this.passwordTextBox.TabIndex = 1;
+            this.passwordTextBox.UseSystemPasswordChar = true;
             // 
             // cityComboBox
             // 
@@ -124,7 +125,7 @@ namespace WeatherInformer
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Name = "HelloUserForm";
-            this.Text = "HelloUserForm";
+            this.Text = "Регистрация";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.HelloUserForm_FormClosed);
             this.ResumeLayout(false);
             this.PerformLayout();

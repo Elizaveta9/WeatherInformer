@@ -12,3 +12,4 @@ D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\W
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.HelloUserForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.ClothesChooseForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.WeatherInformerForm.resources
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.AddClothesForm.resources

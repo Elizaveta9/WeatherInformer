@@ -27,13 +27,21 @@ namespace WeatherInformer
 
         public DataTable GetCities()
         {
-            SqlCommand command = new SqlCommand("SELECT * FROM city ORDER BY name");
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(command.CommandText, connection);
+            try
+            {
+                SqlCommand command = new SqlCommand("SELECT * FROM city ORDER BY name");
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(command.CommandText, connection);
 
-            cities = new DataTable();
+                cities = new DataTable();
 
-            dataAdapter.Fill(cities);
+                dataAdapter.Fill(cities);
 
+                
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             return cities;
         }
 
@@ -102,6 +110,22 @@ namespace WeatherInformer
 
             return table;
         }
+        
+        public DataTable GetAllClothes()
+        {
+            DataTable table = new DataTable();
+
+            SqlCommand command =
+                new SqlCommand(
+                    "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes",
+                    connection);
+            SqlDataAdapter adapter = new SqlDataAdapter();
+
+            adapter.SelectCommand = command;
+            adapter.Fill(table);
+
+            return table;
+        }
 
         public void WriteClothesToUser(string userName)
         {
@@ -143,6 +167,29 @@ namespace WeatherInformer
             }
 
             connection.Close();
+        }
+
+        public void AddNewClothes(string name, int maxTemp, int minTemp)
+        {
+            try
+            {
+                SqlCommand command =
+                    new SqlCommand(
+                        "INSERT INTO clothes(name, min_temperature, max_temperature) VALUES (@name, @minTemp, @maxTemp)",
+                        connection);
+                command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                command.Parameters.Add("@minTemp", SqlDbType.Int).Value = minTemp;
+                command.Parameters.Add("@maxTemp", SqlDbType.Int).Value = maxTemp;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
         }
     }
 }
