@@ -171,6 +171,7 @@ namespace WeatherInformer
                         command.ExecuteNonQuery();
                     }
                     connection.Close();
+                    MessageBox.Show("Выбран стандартный набор одежды");
                 }
                 else
                 {
@@ -274,6 +275,21 @@ namespace WeatherInformer
 
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(table);
+
+            return table;
+        }
+
+        public DataTable GetSiteInfo(string name)
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM site WHERE name = @name", connection);
+            command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            
+            connection.Open();
+            adapter.Fill(table);
+            connection.Close();
 
             return table;
         }

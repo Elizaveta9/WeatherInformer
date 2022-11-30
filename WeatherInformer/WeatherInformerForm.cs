@@ -8,11 +8,14 @@ namespace WeatherInformer
         public WeatherInformerForm(string userName)
         {
             InitializeComponent();
-
+            
             DB db = DB.getDB();
             WorldWeatherSite WwSite = new WorldWeatherSite();
-
-            weatherLable.Text = WwSite.GetWeather(db.GetCityOfUser(userName));
+            string sity = db.GetCityOfUser(userName);
+            userNameLabel.Text = userName + " " + sity;
+            weatherWWLable.Text = WwSite.GetWeather(sity, "WW");
+            weatherNGSLabel.Text = WwSite.GetWeather(sity, "NGS");
+            weatherPPLabel.Text = WwSite.GetWeather(sity, "PP");
         }
 
         private void WeatherInformerForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -25,7 +28,6 @@ namespace WeatherInformer
             HelloUserForm form = new HelloUserForm();
             this.Hide();
             form.Show();
-            // и переключись на нового пользователя
         }
 
         private void addClothesButton_Click(object sender, EventArgs e)
@@ -36,9 +38,12 @@ namespace WeatherInformer
 
         private void changeUserButton_Click(object sender, EventArgs e)
         {
-            //медот переключения на пользователя
             UserNameAndPasswordForm form = new UserNameAndPasswordForm();
             form.ShowDialog();
+            if (form.IsIdetified)
+            {
+                this.Hide();
+            }
         }
         
     }

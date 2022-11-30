@@ -47,7 +47,7 @@ namespace WeatherInformer
         private void chooseStandartClothesButton_Click(object sender, EventArgs e)
         {
             db.WriteStandardClothesToUser(userName);
-            MessageBox.Show("Выбран стандартный набор одежды");
+            
             WeatherInformerForm form = new WeatherInformerForm(userName);
             this.Hide();
             form.Show();
