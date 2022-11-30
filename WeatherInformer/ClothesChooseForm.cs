@@ -14,11 +14,10 @@ namespace WeatherInformer
         public ClothesChooseForm(string userName = "Елизавета")
         {
             InitializeComponent();
-
             InitializeTableClothes();
             
             clothesDataGrid.Columns["id"].Visible = false;
-
+            
             foreach (DataGridViewColumn column in clothesDataGrid.Columns)
             {
                 column.ReadOnly = true;
@@ -35,7 +34,7 @@ namespace WeatherInformer
 
         private void skipButton_Click(object sender, EventArgs e)
         {
-            WeatherInformerForm form = new WeatherInformerForm();
+            WeatherInformerForm form = new WeatherInformerForm(userName);
             this.Hide();
             form.Show();
         }
@@ -48,28 +47,28 @@ namespace WeatherInformer
         private void chooseStandartClothesButton_Click(object sender, EventArgs e)
         {
             db.WriteStandardClothesToUser(userName);
-            MessageBox.Show("Выбрано");
+            MessageBox.Show("Выбран стандартный набор одежды");
+            WeatherInformerForm form = new WeatherInformerForm(userName);
+            this.Hide();
+            form.Show();
         }
 
         private void continueButton_Click(object sender, EventArgs e)
         {
             var checkedRows = new List<DataGridViewRow>();
-
-            //собрать чекмарки и присвоить всё юзеру
-            
             foreach (DataGridViewRow row in clothesDataGrid.Rows)
             {
-                //нужен айдишник
                 if (row.Cells["Выбор"].Value.Equals(true))
                 {
                     checkedRows.Add(row);
                 }
             }
-            
             db.WriteClothesToUser(userName, checkedRows);
+            WeatherInformerForm form = new WeatherInformerForm(userName);
+            this.Hide();
+            form.Show();
         }
-
-
+        
         private void addClothesButton_Click(object sender, EventArgs e)
         {
             AddClothesForm form = new AddClothesForm();
@@ -79,7 +78,6 @@ namespace WeatherInformer
         private void ClothesChooseForm_Activated(object sender, EventArgs e)
         {
             InitializeTableClothes();
-            
             foreach (DataGridViewRow dataGridViewRow in clothesDataGrid.Rows)
             {
                 dataGridViewRow.Cells["Выбор"].Value = false;

@@ -5,9 +5,14 @@ namespace WeatherInformer
 {
     public partial class WeatherInformerForm : Form
     {
-        public WeatherInformerForm()
+        public WeatherInformerForm(string userName)
         {
             InitializeComponent();
+
+            DB db = DB.getDB();
+            WorldWeatherSite WwSite = new WorldWeatherSite();
+
+            weatherLable.Text = WwSite.GetWeather(db.GetCityOfUser(userName));
         }
 
         private void WeatherInformerForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -20,11 +25,21 @@ namespace WeatherInformer
             HelloUserForm form = new HelloUserForm();
             this.Hide();
             form.Show();
+            // и переключись на нового пользователя
         }
 
         private void addClothesButton_Click(object sender, EventArgs e)
         {
-            throw new System.NotImplementedException();
+            AddClothesForm form = new AddClothesForm();
+            form.ShowDialog();
         }
+
+        private void changeUserButton_Click(object sender, EventArgs e)
+        {
+            //медот переключения на пользователя
+            UserNameAndPasswordForm form = new UserNameAndPasswordForm();
+            form.ShowDialog();
+        }
+        
     }
 }

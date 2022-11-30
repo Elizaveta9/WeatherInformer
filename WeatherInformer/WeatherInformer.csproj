@@ -71,14 +71,23 @@
         <Compile Include="HelloUserForm.Designer.cs">
           <DependentUpon>HelloUserForm.cs</DependentUpon>
         </Compile>
+        <Compile Include="IWeatherSite.cs" />
         <Compile Include="Program.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="TranslitMethods.cs" />
+        <Compile Include="UserNameAndPasswordForm.cs">
+          <SubType>Form</SubType>
+        </Compile>
+        <Compile Include="UserNameAndPasswordForm.Designer.cs">
+          <DependentUpon>UserNameAndPasswordForm.cs</DependentUpon>
+        </Compile>
         <Compile Include="WeatherInformerForm.cs">
           <SubType>Form</SubType>
         </Compile>
         <Compile Include="WeatherInformerForm.Designer.cs">
           <DependentUpon>WeatherInformerForm.cs</DependentUpon>
         </Compile>
+        <Compile Include="WorldWeatherSite.cs" />
         <EmbeddedResource Include="AddClothesForm.resx">
           <DependentUpon>AddClothesForm.cs</DependentUpon>
         </EmbeddedResource>
@@ -100,6 +109,9 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>Resources.resx</DependentUpon>
         </Compile>
+        <EmbeddedResource Include="UserNameAndPasswordForm.resx">
+          <DependentUpon>UserNameAndPasswordForm.cs</DependentUpon>
+        </EmbeddedResource>
         <EmbeddedResource Include="WeatherInformerForm.resx">
           <DependentUpon>WeatherInformerForm.cs</DependentUpon>
         </EmbeddedResource>

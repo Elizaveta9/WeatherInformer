@@ -30,19 +30,18 @@ namespace WeatherInformer
         {
             try
             {
+                cities = new DataTable();
+                
                 SqlCommand command = new SqlCommand("SELECT * FROM city ORDER BY name");
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command.CommandText, connection);
 
-                cities = new DataTable();
-
                 dataAdapter.Fill(cities);
-
-                
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
+
             return cities;
         }
 
@@ -58,10 +57,9 @@ namespace WeatherInformer
                 SqlCommand commandCheckUser = new SqlCommand("SELECT name FROM users WHERE name = @name", connection);
                 commandCheckUser.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
 
-                SqlDataAdapter adapter = new SqlDataAdapter();
                 DataTable tableForCheckingUsers = new DataTable();
-
-                adapter.SelectCommand = commandCheckUser;
+                
+                SqlDataAdapter adapter = new SqlDataAdapter(commandCheckUser);
                 adapter.Fill(tableForCheckingUsers);
 
                 if (tableForCheckingUsers.Rows.Count > 0)
@@ -103,13 +101,12 @@ namespace WeatherInformer
                 new SqlCommand(
                     "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes WHERE is_standart='Y'",
                     connection);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = command;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(table);
 
             return table;
         }
-        
+
         public DataTable GetAllClothes()
         {
             DataTable table = new DataTable();
@@ -117,8 +114,7 @@ namespace WeatherInformer
                 new SqlCommand(
                     "SELECT id, name AS Название, RTRIM('от' + str(min_temperature) + ' до' + str(max_temperature)) AS Температура FROM clothes",
                     connection);
-            SqlDataAdapter adapter = new SqlDataAdapter();
-            adapter.SelectCommand = command;
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(table);
 
             return table;
@@ -130,7 +126,9 @@ namespace WeatherInformer
 
             if (userId != 0)
             {
-                SqlCommand command = new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)", connection);
+                SqlCommand command =
+                    new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)",
+                        connection);
                 command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
                 command.Parameters.Add("@clothesId", SqlDbType.Int);
 
@@ -140,6 +138,7 @@ namespace WeatherInformer
                     command.Parameters["@clothesId"].Value = clothesRow.Cells["id"].Value;
                     command.ExecuteNonQuery();
                 }
+
                 connection.Close();
                 MessageBox.Show("Одежда успешно добавлена");
             }
@@ -154,7 +153,6 @@ namespace WeatherInformer
             int userId = 0;
             DataTable clothes = GetStandartClothes();
             
-            connection.Open();
             try
             {
                 userId = GetUserIdByName(userName);
@@ -165,12 +163,14 @@ namespace WeatherInformer
                         connection);
                     command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
                     command.Parameters.Add("@clothesId", SqlDbType.Int);
-
+                    
+                    connection.Open();
                     foreach (DataRow tableRow in clothes.Rows)
                     {
                         command.Parameters["@clothesId"].Value = tableRow["id"];
                         command.ExecuteNonQuery();
                     }
+                    connection.Close();
                 }
                 else
                 {
@@ -181,7 +181,6 @@ namespace WeatherInformer
             {
                 MessageBox.Show(e.Message);
             }
-            connection.Close();
         }
 
         public void AddNewClothes(string name, int maxTemp, int minTemp)
@@ -204,7 +203,6 @@ namespace WeatherInformer
             {
                 MessageBox.Show(e.Message);
             }
-            
         }
 
         public Int32 GetUserIdByName(string name)
@@ -212,18 +210,72 @@ namespace WeatherInformer
             int id = 0;
             SqlCommand command = new SqlCommand("SELECT id FROM users WHERE name = @name", connection);
             command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-            
+
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
             {
                 reader.Read();
                 id = reader.GetInt32(0);
-                
             }
+
             reader.Close();
             connection.Close();
             return id;
+        }
+
+        public void WriteTranslitCity(string translittedCity, string cityName)
+        {
+            try
+            {
+                SqlCommand command = new SqlCommand("UPDATE city SET nameTranslit = @cityTranslitted WHERE name = @cityName", connection);
+                command.Parameters.Add("@cityTranslitted", SqlDbType.VarChar).Value = translittedCity;
+                command.Parameters.Add("@cityName", SqlDbType.VarChar).Value = cityName;
+
+                connection.Open();
+                command.ExecuteNonQuery();
+                connection.Close();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            
+        }
+
+        public string GetCityOfUser(string userName)
+        {
+            string city = "";
+            SqlCommand command =
+                new SqlCommand(
+                    "SELECT nameTranslit FROM city INNER JOIN users ON city.id = users.city_id WHERE users.name = @userName",
+                    connection);
+            command.Parameters.Add("@userName", SqlDbType.VarChar).Value = userName;
+            
+            connection.Open();
+            SqlDataReader reader = command.ExecuteReader();
+            if (reader.HasRows)
+            {
+                reader.Read();
+                city = reader.GetString(0);
+            }
+
+            reader.Close();
+            connection.Close();
+            return city;
+        }
+
+        public DataTable FindUserByNameAndPassword(string name, string password)
+        {
+            DataTable table = new DataTable();
+            SqlCommand command = new SqlCommand("SELECT * FROM users WHERE name = @name AND password = @password", connection);
+            command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+            command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
+
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+            adapter.Fill(table);
+
+            return table;
         }
     }
 }
