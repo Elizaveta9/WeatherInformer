@@ -9,15 +9,22 @@ namespace WeatherInformer
 {
     static class Program
     {
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
+            DB db = DB.getDB();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new HelloUserForm());
+
+            int userId = db.GetLastLoggedUserId();
+            if (userId == 0)
+            {
+                Application.Run(new HelloUserForm());
+            }
+            else
+            {
+                Application.Run(new WeatherInformerForm(db.GetUserNameById(userId)));
+            }
         }
     }
 }

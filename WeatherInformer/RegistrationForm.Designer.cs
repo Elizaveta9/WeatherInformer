@@ -31,6 +31,7 @@ namespace WeatherInformer
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(HelloUserForm));
             this.nameTextBox = new System.Windows.Forms.TextBox();
             this.passwordTextBox = new System.Windows.Forms.TextBox();
             this.cityComboBox = new System.Windows.Forms.ComboBox();
@@ -133,6 +134,7 @@ namespace WeatherInformer
             this.Controls.Add(this.cityComboBox);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.nameTextBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "HelloUserForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Регистрация";

@@ -8,7 +8,6 @@ D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\W
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.CoreCompileInputs.cache
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.exe
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.pdb
-D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.Form1.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.HelloUserForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.ClothesChooseForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.WeatherInformerForm.resources

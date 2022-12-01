@@ -15,9 +15,7 @@ namespace WeatherInformer
         public HelloUserForm()
         {
             InitializeComponent();
-
             DataTable table = db.GetCities();
-
             foreach (DataRow row in table.Rows)
             {
                 cityComboBox.Items.Add(row["name"]);
@@ -29,15 +27,16 @@ namespace WeatherInformer
             name = nameTextBox.Text;
             password = passwordTextBox.Text;
             city = cityComboBox.Text;
-
             if ((name != "") && (password != "") && (city != ""))
             {
                 if (db.AddUser(name, password, city))
                 {
+                    db.SetLastLoggedUser(name);
                     ClothesChooseForm form = new ClothesChooseForm(name);
                     this.Hide();
                     form.Show();
                 }
+                
             }
             else
             {

@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace WeatherInformer
 {
-    public class WorldWeatherSite : IWeatherSite
+    public class WeatherSite : IWeatherSite
     {
         DB db = DB.getDB();
 
@@ -35,7 +35,7 @@ namespace WeatherInformer
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                return e.Message;
             }
 
             return weather;

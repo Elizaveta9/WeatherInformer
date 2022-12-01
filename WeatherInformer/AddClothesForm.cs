@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Windows.Forms;
 
 namespace WeatherInformer
@@ -6,6 +7,12 @@ namespace WeatherInformer
     public partial class AddClothesForm : Form
     {
         DB db = DB.getDB();
+
+        public DataTable AddeedClothes
+        {
+            get { return db.GetLastAddedClothes(); }
+        }
+
         public AddClothesForm()
         {
             InitializeComponent();
@@ -23,19 +30,24 @@ namespace WeatherInformer
             }
             else if (isNumeric(minTemp) && isNumeric(maxTemp))
             {
-                db.AddNewClothes(name, Int32.Parse(maxTemp), Int32.Parse(minTemp));
-                this.Hide();
+                int maxTempNum = Int32.Parse(maxTemp);
+                int minTempNum = Int32.Parse(minTemp);
+                if (minTempNum < maxTempNum)
+                {
+                    db.AddNewClothes(name, maxTempNum, minTempNum);
+                    this.Hide();
+                }
             }
             else
             {
-                MessageBox.Show(@"Температуру необходимо указывать используя только знаки +, - и цифры");
+                MessageBox.Show(@"Недопустимое значение температуры");
             }
         }
 
         private bool isNumeric(string str)
         {
             bool result = false;
-            
+
             try
             {
                 int num = Int32.Parse(str);

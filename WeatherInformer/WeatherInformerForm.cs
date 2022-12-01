@@ -5,17 +5,19 @@ namespace WeatherInformer
 {
     public partial class WeatherInformerForm : Form
     {
+        private DB db = DB.getDB();
+        private string userName = "";
         public WeatherInformerForm(string userName)
         {
             InitializeComponent();
-            
+            this.userName = userName;
             DB db = DB.getDB();
-            WorldWeatherSite WwSite = new WorldWeatherSite();
+            WeatherSite site = new WeatherSite();
             string sity = db.GetCityOfUser(userName);
             userNameLabel.Text = userName + " " + sity;
-            weatherWWLable.Text = WwSite.GetWeather(sity, "WW");
-            weatherNGSLabel.Text = WwSite.GetWeather(sity, "NGS");
-            weatherPPLabel.Text = WwSite.GetWeather(sity, "PP");
+            weatherWWLable.Text = site.GetWeather(sity, "WW");
+            weatherNGSLabel.Text = site.GetWeather(sity, "NGS");
+            weatherPPLabel.Text = site.GetWeather(sity, "PP");
         }
 
         private void WeatherInformerForm_FormClosed(object sender, FormClosedEventArgs e)
@@ -34,6 +36,8 @@ namespace WeatherInformer
         {
             AddClothesForm form = new AddClothesForm();
             form.ShowDialog();
+            db.WriteClothesToUser(userName, form.AddeedClothes);
+            
         }
 
         private void changeUserButton_Click(object sender, EventArgs e)

@@ -225,25 +225,6 @@ namespace WeatherInformer
             return id;
         }
 
-        public void WriteTranslitCity(string translittedCity, string cityName)
-        {
-            try
-            {
-                SqlCommand command = new SqlCommand("UPDATE city SET nameTranslit = @cityTranslitted WHERE name = @cityName", connection);
-                command.Parameters.Add("@cityTranslitted", SqlDbType.VarChar).Value = translittedCity;
-                command.Parameters.Add("@cityName", SqlDbType.VarChar).Value = cityName;
-
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-            
-        }
-
         public string GetCityOfUser(string userName)
         {
             string city = "";
@@ -252,7 +233,6 @@ namespace WeatherInformer
                     "SELECT nameTranslit FROM city INNER JOIN users ON city.id = users.city_id WHERE users.name = @userName",
                     connection);
             command.Parameters.Add("@userName", SqlDbType.VarChar).Value = userName;
-            
             connection.Open();
             SqlDataReader reader = command.ExecuteReader();
             if (reader.HasRows)
@@ -260,7 +240,6 @@ namespace WeatherInformer
                 reader.Read();
                 city = reader.GetString(0);
             }
-
             reader.Close();
             connection.Close();
             return city;
@@ -272,10 +251,8 @@ namespace WeatherInformer
             SqlCommand command = new SqlCommand("SELECT * FROM users WHERE name = @name AND password = @password", connection);
             command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
             command.Parameters.Add("@password", SqlDbType.VarChar).Value = password;
-
             SqlDataAdapter adapter = new SqlDataAdapter(command);
             adapter.Fill(table);
-
             return table;
         }
 
@@ -283,15 +260,84 @@ namespace WeatherInformer
         {
             SqlCommand command = new SqlCommand("SELECT * FROM site WHERE name = @name", connection);
             command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-            
-            connection.Open();
             adapter.Fill(table);
-            connection.Close();
+            return table;
+        }
+
+        public DataTable GetLastAddedClothes()
+        {
+            SqlCommand command = new SqlCommand("SELECT max(id) as 'id' FROM clothes", connection);
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            DataTable table = new DataTable();
+            adapter.Fill(table);
 
             return table;
+        }
+
+        public void WriteClothesToUser(string userName, DataTable addeedClothes)
+        {
+            int userId = GetUserIdByName(userName);
+
+            if (userId != 0)
+            {
+                SqlCommand command =
+                    new SqlCommand("INSERT INTO user_clothes(user_id, clothes_id) VALUES (@userId, @clothesId)",
+                        connection);
+                command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
+                command.Parameters.Add("@clothesId", SqlDbType.Int);
+
+                connection.Open();
+                foreach (DataRow clothesRow in addeedClothes.Rows)
+                {
+                    command.Parameters["@clothesId"].Value = Int32.Parse(clothesRow["id"].ToString());
+                    command.ExecuteNonQuery();
+                }
+
+                connection.Close();
+                MessageBox.Show("Одежда успешно добавлена");
+            }
+            else
+            {
+                MessageBox.Show("Индекс пользователя равен 0");
+            }
+        }
+
+        public int GetLastLoggedUserId()
+        {
+            SqlCommand command = new SqlCommand("SELECT * FROM last_logged_user", connection);
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            adapter.Fill(table);
+            int id = Int32.Parse(table.Rows[0][0].ToString());
+            return id;
+        }
+
+        public string GetUserNameById(int userId)
+        {
+            SqlCommand command = new SqlCommand("SELECT name FROM users WHERE id = @id", connection);
+            command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
+            
+            DataTable table = new DataTable();
+            SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+            adapter.Fill(table);
+            string name = table.Rows[0][0].ToString();
+            return name;
+        }
+
+        public void SetLastLoggedUser(string name)
+        {
+            SqlCommand command =
+                new SqlCommand("UPDATE last_logged_user SET user_id = @id",
+                    connection);
+            command.Parameters.Add("@id", SqlDbType.Int).Value = GetUserIdByName(name);
+            connection.Open();
+            command.ExecuteNonQuery();
+            connection.Close();
         }
     }
 }

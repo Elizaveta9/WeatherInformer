@@ -31,6 +31,7 @@ namespace WeatherInformer
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WeatherInformerForm));
             this.addUserButton = new System.Windows.Forms.Button();
             this.changeUserButton = new System.Windows.Forms.Button();
             this.addClothesButton = new System.Windows.Forms.Button();
@@ -167,6 +168,7 @@ namespace WeatherInformer
             this.Controls.Add(this.addClothesButton);
             this.Controls.Add(this.changeUserButton);
             this.Controls.Add(this.addUserButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "WeatherInformerForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Погода";
