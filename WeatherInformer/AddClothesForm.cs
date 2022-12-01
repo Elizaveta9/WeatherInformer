@@ -7,15 +7,16 @@ namespace WeatherInformer
     public partial class AddClothesForm : Form
     {
         DB db = DB.getDB();
-
+        private string userName;
         public DataTable AddeedClothes
         {
             get { return db.GetLastAddedClothes(); }
         }
 
-        public AddClothesForm()
+        public AddClothesForm(string userName)
         {
             InitializeComponent();
+            this.userName = userName;
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -34,7 +35,7 @@ namespace WeatherInformer
                 int minTempNum = Int32.Parse(minTemp);
                 if (minTempNum < maxTempNum)
                 {
-                    db.AddNewClothes(name, maxTempNum, minTempNum);
+                    db.WriteClothesToUser(userName, db.AddNewClothes(name, maxTempNum, minTempNum));
                     this.Hide();
                 }
             }

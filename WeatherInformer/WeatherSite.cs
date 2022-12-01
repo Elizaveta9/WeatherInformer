@@ -6,39 +6,83 @@ using System.Windows.Forms;
 
 namespace WeatherInformer
 {
-    public class WeatherSite : IWeatherSite
+    public class WeatherSite
     {
         DB db = DB.getDB();
+        private string siteName;
+        private string html;
+        private string temperature = "";
+        private string precipitation = "";
+        private DataTable siteTable;
 
-        public string GetWeather(string cityName, string siteName)
+        public WeatherSite(string siteName, string cityName)
         {
-            string weather = "";
-            DataTable siteTable = db.GetSiteInfo(siteName);
             try
             {
+                this.siteName = siteName;
+                siteTable = db.GetSiteInfo(siteName);
                 WebClient client = new WebClient();
-                string html =
+                html =
                     client.DownloadString(siteTable.Rows[0]["url"] + cityName + "/");
+            }
+            catch
+            {
+            }
+        }
 
-
+        public string GetTemperature()
+        {
+            try
+            {
                 Regex regex = new Regex(siteTable.Rows[0]["temperature_regex"].ToString());
                 MatchCollection matches = regex.Matches(html);
 
                 var match = matches[0];
-                weather = match.ToString();
+                temperature = match.ToString();
 
                 regex = new Regex(siteTable.Rows[0]["temperature_value_regex"].ToString());
-                matches = regex.Matches(weather);
+                matches = regex.Matches(temperature);
+
+                match = matches[0];
+                temperature = match.ToString();
+            }
+            catch
+            {
+                return "У сервиса нет данных по этому местоположению";
+            }
+
+            return temperature + "°";
+        }
+
+        public string GetPrecipitation()
+        {
+            try
+            {
+                Regex regex = new Regex(siteTable.Rows[0]["precipitation_regex"].ToString());
+                MatchCollection matches = regex.Matches(html);
+                var match = matches[0];
+                precipitation = match.ToString();
+                regex = new Regex(siteTable.Rows[0]["precipitation_value_regex"].ToString());
+                matches = regex.Matches(precipitation);
                 
                 match = matches[0];
-                weather = match.ToString();
+                precipitation = match.ToString();
             }
             catch (Exception e)
             {
-                return e.Message;
+                MessageBox.Show(e.Message);
             }
 
-            return weather;
+            return precipitation;
+        }
+
+
+        public void WriteToDb()
+        {
+            if (!temperature.Equals(""))
+            {
+                db.UpdateWeather((int)siteTable.Rows[0]["id"], Int32.Parse(temperature), DateTime.Now.Date, precipitation);
+            }
         }
     }
 }

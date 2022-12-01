@@ -32,6 +32,7 @@ namespace WeatherInformer
                string userName = userDataTable.Rows[0]["name"].ToString();
                this.Hide();
                WeatherInformerForm form = new WeatherInformerForm(userName);
+               db.SetLastLoggedUser(userName);
                form.Show();
            }
            else

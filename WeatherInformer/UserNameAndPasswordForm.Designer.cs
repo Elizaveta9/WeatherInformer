@@ -41,8 +41,9 @@ namespace WeatherInformer
             // 
             // label1
             // 
+            this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(-6, 31);
+            this.label1.Location = new System.Drawing.Point(-17, 43);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(128, 26);
             this.label1.TabIndex = 0;
@@ -51,8 +52,9 @@ namespace WeatherInformer
             // 
             // label2
             // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(-6, 92);
+            this.label2.Location = new System.Drawing.Point(-17, 104);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(128, 26);
             this.label2.TabIndex = 1;
@@ -62,7 +64,7 @@ namespace WeatherInformer
             // nameTextBox
             // 
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTextBox.Location = new System.Drawing.Point(152, 30);
+            this.nameTextBox.Location = new System.Drawing.Point(141, 42);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(159, 27);
             this.nameTextBox.TabIndex = 2;
@@ -70,35 +72,39 @@ namespace WeatherInformer
             // passwordTextBox
             // 
             this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordTextBox.Location = new System.Drawing.Point(152, 91);
+            this.passwordTextBox.Location = new System.Drawing.Point(141, 103);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.Size = new System.Drawing.Size(159, 27);
             this.passwordTextBox.TabIndex = 3;
             // 
             // confirmButton
             // 
-            this.confirmButton.Location = new System.Drawing.Point(192, 152);
+            this.confirmButton.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.confirmButton.Location = new System.Drawing.Point(181, 152);
             this.confirmButton.Name = "confirmButton";
             this.confirmButton.Size = new System.Drawing.Size(119, 28);
             this.confirmButton.TabIndex = 4;
             this.confirmButton.Text = "Подтвердить";
-            this.confirmButton.UseVisualStyleBackColor = true;
+            this.confirmButton.UseVisualStyleBackColor = false;
             this.confirmButton.Click += new System.EventHandler(this.confirmButton_Click);
             // 
             // UserNameAndPasswordForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(344, 192);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(323, 192);
             this.Controls.Add(this.confirmButton);
             this.Controls.Add(this.passwordTextBox);
             this.Controls.Add(this.nameTextBox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "UserNameAndPasswordForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "UserNameAndPasswordForm";
+            this.Text = "Имя и пароль";
             this.ResumeLayout(false);
             this.PerformLayout();
         }

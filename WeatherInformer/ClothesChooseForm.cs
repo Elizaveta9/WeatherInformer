@@ -15,20 +15,16 @@ namespace WeatherInformer
         {
             InitializeComponent();
             InitializeTableClothes();
-            
             clothesDataGrid.Columns["id"].Visible = false;
-            
             foreach (DataGridViewColumn column in clothesDataGrid.Columns)
             {
                 column.ReadOnly = true;
             }
-
             DataGridViewCheckBoxColumn checkColumn = new DataGridViewCheckBoxColumn();
             checkColumn.ReadOnly = false;
             checkColumn.HeaderText = "Выбор";
             checkColumn.Name = "Выбор";
             clothesDataGrid.Columns.Insert(0, checkColumn);
-            
             this.userName = userName;
         }
 
@@ -47,7 +43,6 @@ namespace WeatherInformer
         private void chooseStandartClothesButton_Click(object sender, EventArgs e)
         {
             db.WriteStandardClothesToUser(userName);
-            
             WeatherInformerForm form = new WeatherInformerForm(userName);
             this.Hide();
             form.Show();
@@ -71,7 +66,7 @@ namespace WeatherInformer
         
         private void addClothesButton_Click(object sender, EventArgs e)
         {
-            AddClothesForm form = new AddClothesForm();
+            AddClothesForm form = new AddClothesForm(userName);
             form.ShowDialog();
         }
 
