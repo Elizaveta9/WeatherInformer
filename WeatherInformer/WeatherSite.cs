@@ -25,9 +25,7 @@ namespace WeatherInformer
                 html =
                     client.DownloadString(siteTable.Rows[0]["url"] + cityName + "/");
             }
-            catch
-            {
-            }
+            catch{}
         }
 
         public string GetTemperature()
@@ -36,21 +34,18 @@ namespace WeatherInformer
             {
                 Regex regex = new Regex(siteTable.Rows[0]["temperature_regex"].ToString());
                 MatchCollection matches = regex.Matches(html);
-
                 var match = matches[0];
                 temperature = match.ToString();
-
                 regex = new Regex(siteTable.Rows[0]["temperature_value_regex"].ToString());
                 matches = regex.Matches(temperature);
-
                 match = matches[0];
                 temperature = match.ToString();
             }
             catch
             {
-                return "У сервиса нет данных по этому местоположению";
+                temperature = "999";
+                return "--";
             }
-
             return temperature + "°";
         }
 
@@ -64,25 +59,24 @@ namespace WeatherInformer
                 precipitation = match.ToString();
                 regex = new Regex(siteTable.Rows[0]["precipitation_value_regex"].ToString());
                 matches = regex.Matches(precipitation);
-                
                 match = matches[0];
                 precipitation = match.ToString();
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
-
+            catch{}
             return precipitation;
         }
 
-
         public void WriteToDb()
         {
-            if (!temperature.Equals(""))
+            try
             {
-                db.UpdateWeather((int)siteTable.Rows[0]["id"], Int32.Parse(temperature), DateTime.Now.Date, precipitation);
+                if (!temperature.Equals(""))
+                {
+                    db.UpdateWeather((int)siteTable.Rows[0]["id"], Int32.Parse(temperature), DateTime.Now.Date,
+                        precipitation);
+                }
             }
+            catch{}
         }
     }
 }

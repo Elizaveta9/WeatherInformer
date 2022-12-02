@@ -35,8 +35,12 @@ namespace WeatherInformer
                 int minTempNum = Int32.Parse(minTemp);
                 if (minTempNum < maxTempNum)
                 {
-                    db.WriteClothesToUser(userName, db.AddNewClothes(name, maxTempNum, minTempNum));
-                    this.Hide();
+                    DataTable clothes = db.AddNewClothes(name, maxTempNum, minTempNum);
+                    if (clothes.Rows.Count > 0)
+                    {
+                        db.WriteClothesToUser(userName, clothes);
+                        this.Hide();
+                    }
                 }
             }
             else
@@ -48,17 +52,16 @@ namespace WeatherInformer
         private bool isNumeric(string str)
         {
             bool result = false;
-
             try
             {
                 int num = Int32.Parse(str);
                 result = true;
             }
-            catch
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message, e.Source);
                 result = false;
             }
-
             return result;
         }
     }

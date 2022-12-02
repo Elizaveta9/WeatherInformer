@@ -50,26 +50,19 @@ namespace WeatherInformer
             bool result = false;
             try
             {
-                //TODO сделать проверку на наличие пользователя, добавить проврку "был ли осуществлён вход на этом компе", заполнены ли все поля
-                //TODO шифровка пароля
-
-                //проверка наличия пользователя
                 SqlCommand commandCheckUser = new SqlCommand("SELECT name FROM users WHERE name = @name", connection);
                 commandCheckUser.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
-
                 DataTable tableForCheckingUsers = new DataTable();
-
                 SqlDataAdapter adapter = new SqlDataAdapter(commandCheckUser);
                 adapter.Fill(tableForCheckingUsers);
-
                 if (tableForCheckingUsers.Rows.Count > 0)
                 {
-                    MessageBox.Show("Пользователь с таким именем уже есть в системе");
+                    MessageBox.Show("Пользователь с таким именем уже есть в системе", "Ошибка", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                     result = false;
                 }
                 else
                 {
-                    //добавление пользователя
                     DataRow[] cityRows = cities.Select("name = '" + city + "'");
 
                     SqlCommand command =
@@ -189,25 +182,34 @@ namespace WeatherInformer
         {
             try
             {
-                SqlCommand command =
+                SqlCommand command = new SqlCommand("SELECT name FROM clothes WHERE name = @name", connection);
+                command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(table);
+                if (table.Rows.Count > 0)
+                {
+                    MessageBox.Show("Данная одежда уже записана", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return new DataTable();
+                }
+                command =
                     new SqlCommand(
                         "INSERT INTO clothes(name, min_temperature, max_temperature) VALUES (@name, @minTemp, @maxTemp)",
                         connection);
                 command.Parameters.Add("@name", SqlDbType.VarChar).Value = name;
                 command.Parameters.Add("@minTemp", SqlDbType.Int).Value = minTemp;
                 command.Parameters.Add("@maxTemp", SqlDbType.Int).Value = maxTemp;
-
                 connection.Open();
                 command.ExecuteNonQuery();
                 connection.Close();
-                
-                return GetLastAddedClothes(); 
+                return GetLastAddedClothes();
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.Message);
             }
-            return GetLastAddedClothes(); 
+
+            return GetLastAddedClothes();
         }
 
         public Int32 GetUserIdByName(string name)
@@ -276,7 +278,6 @@ namespace WeatherInformer
         {
             SqlCommand command = new SqlCommand("SELECT max(id) as 'id' FROM clothes", connection);
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-
             DataTable table = new DataTable();
             adapter.Fill(table);
 
@@ -286,7 +287,6 @@ namespace WeatherInformer
         public void WriteClothesToUser(string userName, DataTable addeedClothes)
         {
             int userId = GetUserIdByName(userName);
-
             if (userId != 0)
             {
                 SqlCommand command =
@@ -294,7 +294,6 @@ namespace WeatherInformer
                         connection);
                 command.Parameters.Add("@userId", SqlDbType.Int).Value = userId;
                 command.Parameters.Add("@clothesId", SqlDbType.Int);
-
                 connection.Open();
                 foreach (DataRow clothesRow in addeedClothes.Rows)
                 {
@@ -316,7 +315,6 @@ namespace WeatherInformer
             SqlCommand command = new SqlCommand("SELECT * FROM last_logged_user", connection);
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-
             adapter.Fill(table);
             int id = Int32.Parse(table.Rows[0][0].ToString());
             return id;
@@ -326,10 +324,8 @@ namespace WeatherInformer
         {
             SqlCommand command = new SqlCommand("SELECT name FROM users WHERE id = @id", connection);
             command.Parameters.Add("@id", SqlDbType.Int).Value = userId;
-
             DataTable table = new DataTable();
             SqlDataAdapter adapter = new SqlDataAdapter(command);
-
             adapter.Fill(table);
             string name = table.Rows[0][0].ToString();
             return name;
@@ -364,12 +360,23 @@ namespace WeatherInformer
 
         public int GetAvgTemperatureForToday(DateTime now)
         {
-            SqlCommand command = new SqlCommand("SELECT avg(temperature) as 'avg' FROM weather WHERE date = @date", connection);
-            command.Parameters.Add("@date", SqlDbType.Date).Value = now;
-            DataTable table = new DataTable();
-            SqlDataAdapter adapter = new SqlDataAdapter(command);
-            adapter.Fill(table);
-            int avgTemp = (int)table.Rows[0][0];
+            int avgTemp = 0;
+            try
+            {
+                SqlCommand command =
+                    new SqlCommand(
+                        "SELECT avg(temperature) as 'avg' FROM weather WHERE date = @date AND temperature < 999",
+                        connection);
+                command.Parameters.Add("@date", SqlDbType.Date).Value = now;
+                DataTable table = new DataTable();
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+                adapter.Fill(table);
+                avgTemp = (int)table.Rows[0][0];
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
             return avgTemp;
         }
 
@@ -377,7 +384,8 @@ namespace WeatherInformer
         {
             try
             {
-                SqlCommand command = new SqlCommand("SELECT * FROM weather WHERE date = @nowDate AND site_id = @siteId", connection);
+                SqlCommand command = new SqlCommand("SELECT * FROM weather WHERE date = @nowDate AND site_id = @siteId",
+                    connection);
                 command.Parameters.Add("@nowDate", SqlDbType.Date).Value = nowDate;
                 command.Parameters.Add("@siteId", SqlDbType.Int).Value = siteId;
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
@@ -385,7 +393,8 @@ namespace WeatherInformer
                 adapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    command = new SqlCommand("UPDATE weather SET temperature = @temp, precipitation = @prec WHERE site_id = @siteId",
+                    command = new SqlCommand(
+                        "UPDATE weather SET temperature = @temp, precipitation = @prec WHERE site_id = @siteId",
                         connection);
                     command.Parameters.Add("@temp", SqlDbType.Int).Value = temperature;
                     command.Parameters.Add("@prec", SqlDbType.Text).Value = precipitation;
@@ -397,7 +406,8 @@ namespace WeatherInformer
                 else
                 {
                     command = new SqlCommand(
-                        "INSERT INTO weather(site_id, temperature, date, precipitation) VALUES (@siteId, @temp, @date, @prec)", connection);
+                        "INSERT INTO weather(site_id, temperature, date, precipitation) VALUES (@siteId, @temp, @date, @prec)",
+                        connection);
                     command.Parameters.Add("@siteId", SqlDbType.Int).Value = siteId;
                     command.Parameters.Add("@temp", SqlDbType.Int).Value = temperature;
                     command.Parameters.Add("@date", SqlDbType.Date).Value = nowDate;

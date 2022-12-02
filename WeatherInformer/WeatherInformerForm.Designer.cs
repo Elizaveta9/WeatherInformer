@@ -35,25 +35,29 @@ namespace WeatherInformer
             this.addUserButton = new System.Windows.Forms.Button();
             this.changeUserButton = new System.Windows.Forms.Button();
             this.addClothesButton = new System.Windows.Forms.Button();
-            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.windPPLable = new System.Windows.Forms.TabControl();
             this.wwTab = new System.Windows.Forms.TabPage();
+            this.avgTemperatureLabel = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.precipitationWWLabel = new System.Windows.Forms.Label();
             this.weatherWWLable = new System.Windows.Forms.Label();
             this.ngsTab = new System.Windows.Forms.TabPage();
+            this.avgTemperatureLabel1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.precipitationNgsLabel = new System.Windows.Forms.Label();
             this.weatherNGSLabel = new System.Windows.Forms.Label();
             this.ppTab = new System.Windows.Forms.TabPage();
+            this.avgTemperatureLabel2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.precipitationPPLabel = new System.Windows.Forms.Label();
             this.weatherPPLabel = new System.Windows.Forms.Label();
             this.userNameLabel = new System.Windows.Forms.Label();
             this.clothesListBox = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.avgTemperatureLabel = new System.Windows.Forms.Label();
-            this.tabControl1.SuspendLayout();
+            this.windPPLable.SuspendLayout();
             this.wwTab.SuspendLayout();
             this.ngsTab.SuspendLayout();
             this.ppTab.SuspendLayout();
@@ -62,9 +66,9 @@ namespace WeatherInformer
             // addUserButton
             // 
             this.addUserButton.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.addUserButton.Location = new System.Drawing.Point(538, 12);
+            this.addUserButton.Location = new System.Drawing.Point(457, 12);
             this.addUserButton.Name = "addUserButton";
-            this.addUserButton.Size = new System.Drawing.Size(250, 33);
+            this.addUserButton.Size = new System.Drawing.Size(316, 33);
             this.addUserButton.TabIndex = 1;
             this.addUserButton.Text = "Добавить пользователя";
             this.addUserButton.UseVisualStyleBackColor = false;
@@ -73,9 +77,9 @@ namespace WeatherInformer
             // changeUserButton
             // 
             this.changeUserButton.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.changeUserButton.Location = new System.Drawing.Point(538, 51);
+            this.changeUserButton.Location = new System.Drawing.Point(457, 51);
             this.changeUserButton.Name = "changeUserButton";
-            this.changeUserButton.Size = new System.Drawing.Size(250, 33);
+            this.changeUserButton.Size = new System.Drawing.Size(316, 33);
             this.changeUserButton.TabIndex = 2;
             this.changeUserButton.Text = "Сменить пользователя";
             this.changeUserButton.UseVisualStyleBackColor = false;
@@ -84,37 +88,49 @@ namespace WeatherInformer
             // addClothesButton
             // 
             this.addClothesButton.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.addClothesButton.Location = new System.Drawing.Point(538, 90);
+            this.addClothesButton.Location = new System.Drawing.Point(457, 90);
             this.addClothesButton.Name = "addClothesButton";
-            this.addClothesButton.Size = new System.Drawing.Size(250, 33);
+            this.addClothesButton.Size = new System.Drawing.Size(316, 33);
             this.addClothesButton.TabIndex = 3;
             this.addClothesButton.Text = "Добавить одежду";
             this.addClothesButton.UseVisualStyleBackColor = false;
             this.addClothesButton.Click += new System.EventHandler(this.addClothesButton_Click);
             // 
-            // tabControl1
+            // windPPLable
             // 
-            this.tabControl1.Controls.Add(this.wwTab);
-            this.tabControl1.Controls.Add(this.ngsTab);
-            this.tabControl1.Controls.Add(this.ppTab);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(511, 381);
-            this.tabControl1.TabIndex = 4;
+            this.windPPLable.Controls.Add(this.wwTab);
+            this.windPPLable.Controls.Add(this.ngsTab);
+            this.windPPLable.Controls.Add(this.ppTab);
+            this.windPPLable.Location = new System.Drawing.Point(12, 12);
+            this.windPPLable.Name = "windPPLable";
+            this.windPPLable.SelectedIndex = 0;
+            this.windPPLable.Size = new System.Drawing.Size(426, 354);
+            this.windPPLable.TabIndex = 4;
             // 
             // wwTab
             // 
+            this.wwTab.Controls.Add(this.avgTemperatureLabel);
             this.wwTab.Controls.Add(this.label3);
+            this.wwTab.Controls.Add(this.label2);
             this.wwTab.Controls.Add(this.precipitationWWLabel);
             this.wwTab.Controls.Add(this.weatherWWLable);
             this.wwTab.Location = new System.Drawing.Point(4, 25);
             this.wwTab.Name = "wwTab";
             this.wwTab.Padding = new System.Windows.Forms.Padding(3);
-            this.wwTab.Size = new System.Drawing.Size(503, 352);
+            this.wwTab.Size = new System.Drawing.Size(418, 325);
             this.wwTab.TabIndex = 0;
             this.wwTab.Text = "World Weather";
             this.wwTab.UseVisualStyleBackColor = true;
+            // 
+            // avgTemperatureLabel
+            // 
+            this.avgTemperatureLabel.BackColor = System.Drawing.Color.Transparent;
+            this.avgTemperatureLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.avgTemperatureLabel.Location = new System.Drawing.Point(270, 262);
+            this.avgTemperatureLabel.Name = "avgTemperatureLabel";
+            this.avgTemperatureLabel.Size = new System.Drawing.Size(177, 60);
+            this.avgTemperatureLabel.TabIndex = 9;
+            this.avgTemperatureLabel.Text = "темп";
             // 
             // label3
             // 
@@ -124,6 +140,16 @@ namespace WeatherInformer
             this.label3.Size = new System.Drawing.Size(205, 34);
             this.label3.TabIndex = 2;
             this.label3.Text = "Влажность:";
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(3, 220);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(315, 102);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Средняя температура:";
             // 
             // precipitationWWLabel
             // 
@@ -149,16 +175,38 @@ namespace WeatherInformer
             // 
             // ngsTab
             // 
+            this.ngsTab.Controls.Add(this.avgTemperatureLabel1);
+            this.ngsTab.Controls.Add(this.label7);
             this.ngsTab.Controls.Add(this.label4);
             this.ngsTab.Controls.Add(this.precipitationNgsLabel);
             this.ngsTab.Controls.Add(this.weatherNGSLabel);
             this.ngsTab.Location = new System.Drawing.Point(4, 25);
             this.ngsTab.Name = "ngsTab";
             this.ngsTab.Padding = new System.Windows.Forms.Padding(3);
-            this.ngsTab.Size = new System.Drawing.Size(503, 352);
+            this.ngsTab.Size = new System.Drawing.Size(418, 325);
             this.ngsTab.TabIndex = 1;
             this.ngsTab.Text = "NGS";
             this.ngsTab.UseVisualStyleBackColor = true;
+            // 
+            // avgTemperatureLabel1
+            // 
+            this.avgTemperatureLabel1.BackColor = System.Drawing.Color.Transparent;
+            this.avgTemperatureLabel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.avgTemperatureLabel1.Location = new System.Drawing.Point(270, 262);
+            this.avgTemperatureLabel1.Name = "avgTemperatureLabel1";
+            this.avgTemperatureLabel1.Size = new System.Drawing.Size(177, 60);
+            this.avgTemperatureLabel1.TabIndex = 11;
+            this.avgTemperatureLabel1.Text = "темп";
+            // 
+            // label7
+            // 
+            this.label7.BackColor = System.Drawing.Color.Transparent;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(3, 220);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(315, 102);
+            this.label7.TabIndex = 10;
+            this.label7.Text = "Средняя температура:";
             // 
             // label4
             // 
@@ -187,28 +235,50 @@ namespace WeatherInformer
             this.weatherNGSLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.weatherNGSLabel.Location = new System.Drawing.Point(4, 3);
             this.weatherNGSLabel.Name = "weatherNGSLabel";
-            this.weatherNGSLabel.Size = new System.Drawing.Size(603, 91);
+            this.weatherNGSLabel.Size = new System.Drawing.Size(475, 91);
             this.weatherNGSLabel.TabIndex = 1;
-            this.weatherNGSLabel.Text = "Погода от NGS\r\n";
+            this.weatherNGSLabel.Text = "Нет данных\r\n";
             // 
             // ppTab
             // 
+            this.ppTab.Controls.Add(this.avgTemperatureLabel2);
+            this.ppTab.Controls.Add(this.label9);
             this.ppTab.Controls.Add(this.label5);
             this.ppTab.Controls.Add(this.precipitationPPLabel);
             this.ppTab.Controls.Add(this.weatherPPLabel);
             this.ppTab.Location = new System.Drawing.Point(4, 25);
             this.ppTab.Name = "ppTab";
-            this.ppTab.Size = new System.Drawing.Size(503, 352);
+            this.ppTab.Size = new System.Drawing.Size(418, 325);
             this.ppTab.TabIndex = 2;
             this.ppTab.Text = "Примпогода";
             this.ppTab.UseVisualStyleBackColor = true;
+            // 
+            // avgTemperatureLabel2
+            // 
+            this.avgTemperatureLabel2.BackColor = System.Drawing.Color.Transparent;
+            this.avgTemperatureLabel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.avgTemperatureLabel2.Location = new System.Drawing.Point(270, 262);
+            this.avgTemperatureLabel2.Name = "avgTemperatureLabel2";
+            this.avgTemperatureLabel2.Size = new System.Drawing.Size(177, 60);
+            this.avgTemperatureLabel2.TabIndex = 13;
+            this.avgTemperatureLabel2.Text = "темп";
+            // 
+            // label9
+            // 
+            this.label9.BackColor = System.Drawing.Color.Transparent;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(3, 220);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(315, 102);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Средняя температура:";
             // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label5.Location = new System.Drawing.Point(5, 94);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 80);
+            this.label5.Size = new System.Drawing.Size(206, 68);
             this.label5.TabIndex = 6;
             this.label5.Text = "Вероятность осадков:";
             // 
@@ -237,7 +307,7 @@ namespace WeatherInformer
             // userNameLabel
             // 
             this.userNameLabel.BackColor = System.Drawing.Color.Transparent;
-            this.userNameLabel.Location = new System.Drawing.Point(529, 423);
+            this.userNameLabel.Location = new System.Drawing.Point(517, 393);
             this.userNameLabel.Name = "userNameLabel";
             this.userNameLabel.Size = new System.Drawing.Size(259, 15);
             this.userNameLabel.TabIndex = 5;
@@ -246,42 +316,23 @@ namespace WeatherInformer
             // 
             // clothesListBox
             // 
-            this.clothesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.clothesListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.clothesListBox.FormattingEnabled = true;
-            this.clothesListBox.ItemHeight = 16;
-            this.clothesListBox.Location = new System.Drawing.Point(538, 181);
+            this.clothesListBox.ItemHeight = 18;
+            this.clothesListBox.Location = new System.Drawing.Point(457, 181);
             this.clothesListBox.Name = "clothesListBox";
-            this.clothesListBox.Size = new System.Drawing.Size(250, 212);
+            this.clothesListBox.Size = new System.Drawing.Size(316, 202);
             this.clothesListBox.TabIndex = 6;
             // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Location = new System.Drawing.Point(538, 153);
+            this.label1.Location = new System.Drawing.Point(457, 150);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(250, 28);
+            this.label1.Size = new System.Drawing.Size(316, 28);
             this.label1.TabIndex = 7;
             this.label1.Text = "Рекомендованная одежда\r\n";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Transparent;
-            this.label2.Location = new System.Drawing.Point(12, 417);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(178, 21);
-            this.label2.TabIndex = 8;
-            this.label2.Text = "Средняя температура:";
-            // 
-            // avgTemperatureLabel
-            // 
-            this.avgTemperatureLabel.BackColor = System.Drawing.Color.Transparent;
-            this.avgTemperatureLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.avgTemperatureLabel.Location = new System.Drawing.Point(173, 417);
-            this.avgTemperatureLabel.Name = "avgTemperatureLabel";
-            this.avgTemperatureLabel.Size = new System.Drawing.Size(54, 21);
-            this.avgTemperatureLabel.TabIndex = 9;
-            this.avgTemperatureLabel.Text = "темп";
             // 
             // WeatherInformerForm
             // 
@@ -289,13 +340,11 @@ namespace WeatherInformer
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.avgTemperatureLabel);
-            this.Controls.Add(this.label2);
+            this.ClientSize = new System.Drawing.Size(788, 417);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.clothesListBox);
             this.Controls.Add(this.userNameLabel);
-            this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.windPPLable);
             this.Controls.Add(this.addClothesButton);
             this.Controls.Add(this.changeUserButton);
             this.Controls.Add(this.addUserButton);
@@ -305,7 +354,7 @@ namespace WeatherInformer
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Погода";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.WeatherInformerForm_FormClosed);
-            this.tabControl1.ResumeLayout(false);
+            this.windPPLable.ResumeLayout(false);
             this.wwTab.ResumeLayout(false);
             this.wwTab.PerformLayout();
             this.ngsTab.ResumeLayout(false);
@@ -314,6 +363,11 @@ namespace WeatherInformer
             this.ppTab.PerformLayout();
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.Label avgTemperatureLabel1;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label avgTemperatureLabel2;
+        private System.Windows.Forms.Label label9;
 
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label precipitationPPLabel;
@@ -343,7 +397,7 @@ namespace WeatherInformer
 
         private System.Windows.Forms.Label weatherWWLable;
 
-        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabControl windPPLable;
         private System.Windows.Forms.TabPage wwTab;
         private System.Windows.Forms.TabPage ngsTab;
 

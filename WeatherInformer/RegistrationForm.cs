@@ -43,19 +43,10 @@ namespace WeatherInformer
                 MessageBox.Show("Заполните все поля", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void cityComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             city = cityComboBox.SelectedItem.ToString();
         }
-
-        private void skipRegistrationButton_Click(object sender, EventArgs e)
-        {
-            ClothesChooseForm form = new ClothesChooseForm();
-            this.Hide();
-            form.Show();
-        }
-
         private void HelloUserForm_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();

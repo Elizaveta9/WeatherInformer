@@ -37,7 +37,7 @@ namespace WeatherInformer
            }
            else
            {
-               MessageBox.Show("Пользователь не найден");
+               MessageBox.Show("Пользователь не найден", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
            }
         }
     }

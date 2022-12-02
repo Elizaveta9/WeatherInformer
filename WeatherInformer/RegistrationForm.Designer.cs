@@ -44,7 +44,7 @@ namespace WeatherInformer
             // nameTextBox
             // 
             this.nameTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.nameTextBox.Location = new System.Drawing.Point(126, 50);
+            this.nameTextBox.Location = new System.Drawing.Point(150, 49);
             this.nameTextBox.Name = "nameTextBox";
             this.nameTextBox.Size = new System.Drawing.Size(216, 27);
             this.nameTextBox.TabIndex = 0;
@@ -52,7 +52,7 @@ namespace WeatherInformer
             // passwordTextBox
             // 
             this.passwordTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.passwordTextBox.Location = new System.Drawing.Point(126, 100);
+            this.passwordTextBox.Location = new System.Drawing.Point(150, 99);
             this.passwordTextBox.Name = "passwordTextBox";
             this.passwordTextBox.PasswordChar = '.';
             this.passwordTextBox.Size = new System.Drawing.Size(216, 27);
@@ -64,7 +64,7 @@ namespace WeatherInformer
             this.cityComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.cityComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.cityComboBox.FormattingEnabled = true;
-            this.cityComboBox.Location = new System.Drawing.Point(126, 149);
+            this.cityComboBox.Location = new System.Drawing.Point(150, 148);
             this.cityComboBox.Name = "cityComboBox";
             this.cityComboBox.Size = new System.Drawing.Size(216, 28);
             this.cityComboBox.TabIndex = 3;
@@ -74,7 +74,7 @@ namespace WeatherInformer
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(-126, 46);
+            this.label1.Location = new System.Drawing.Point(-102, 45);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(246, 31);
             this.label1.TabIndex = 4;
@@ -85,18 +85,18 @@ namespace WeatherInformer
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(-207, 93);
+            this.label2.Location = new System.Drawing.Point(17, 85);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(327, 34);
+            this.label2.Size = new System.Drawing.Size(127, 55);
             this.label2.TabIndex = 5;
-            this.label2.Text = "Пароль:";
+            this.label2.Text = "Придумайте пароль:";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // label3
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(-101, 144);
+            this.label3.Location = new System.Drawing.Point(-77, 143);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(221, 37);
             this.label3.TabIndex = 6;
@@ -106,7 +106,7 @@ namespace WeatherInformer
             // startButton
             // 
             this.startButton.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.startButton.Location = new System.Drawing.Point(257, 193);
+            this.startButton.Location = new System.Drawing.Point(281, 191);
             this.startButton.Name = "startButton";
             this.startButton.Size = new System.Drawing.Size(85, 27);
             this.startButton.TabIndex = 7;
