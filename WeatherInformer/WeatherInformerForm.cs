@@ -32,15 +32,15 @@ namespace WeatherInformer
             avgTemperature = db.GetAvgTemperatureForToday(DateTime.Now.Date);
             if (avgTemperature > 0)
             {
-                avgTemperatureLabel.Text = "+" + avgTemperature;
-                avgTemperatureLabel1.Text = "+" + avgTemperature;
-                avgTemperatureLabel2.Text = "+" + avgTemperature;
+                avgTemperatureLabel.Text = "+" + avgTemperature + "°";
+                avgTemperatureLabel1.Text = "+" + avgTemperature + "°";
+                avgTemperatureLabel2.Text = "+" + avgTemperature + "°";
             }
             else
             {
-                avgTemperatureLabel.Text = avgTemperature.ToString();
-                avgTemperatureLabel1.Text = avgTemperature.ToString();
-                avgTemperatureLabel2.Text = avgTemperature.ToString();
+                avgTemperatureLabel.Text = avgTemperature.ToString() + "°";
+                avgTemperatureLabel1.Text = avgTemperature.ToString() + "°";
+                avgTemperatureLabel2.Text = avgTemperature.ToString() + "°";
             }
             try
             {

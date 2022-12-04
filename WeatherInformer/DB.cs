@@ -373,10 +373,7 @@ namespace WeatherInformer
                 adapter.Fill(table);
                 avgTemp = (int)table.Rows[0][0];
             }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-            }
+            catch{}
             return avgTemp;
         }
 

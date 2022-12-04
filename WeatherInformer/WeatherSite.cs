@@ -25,7 +25,10 @@ namespace WeatherInformer
                 html =
                     client.DownloadString(siteTable.Rows[0]["url"] + cityName + "/");
             }
-            catch{}
+            catch
+            {
+                MessageBox.Show("Невозможно получить данные: " + siteTable.Rows[0]["url"]);
+            }
         }
 
         public string GetTemperature()
@@ -46,6 +49,7 @@ namespace WeatherInformer
                 temperature = "999";
                 return "--";
             }
+
             return temperature + "°";
         }
 
@@ -62,7 +66,10 @@ namespace WeatherInformer
                 match = matches[0];
                 precipitation = match.ToString();
             }
-            catch{}
+            catch
+            {
+            }
+
             return precipitation;
         }
 
@@ -76,7 +83,9 @@ namespace WeatherInformer
                         precipitation);
                 }
             }
-            catch{}
+            catch
+            {
+            }
         }
     }
 }
