@@ -1,0 +1,15 @@
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\WeatherInformerTests.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\WeatherInformerTests.pdb
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\nunit.framework.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\WeatherInformer.exe
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\WeatherInformer.pdb
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\WeatherInformer.exe.config
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\bin\Debug\nunit.framework.xml
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\obj\Debug\WeatherInformerTests.csproj.AssemblyReference.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\obj\Debug\WeatherInformerTests.csproj.CoreCompileInputs.cache
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\obj\Debug\WeatherInformerTests.csproj.CopyComplete
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\obj\Debug\WeatherInformerTests.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformerTests\obj\Debug\WeatherInformerTests.pdb

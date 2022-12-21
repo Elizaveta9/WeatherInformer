@@ -13,3 +13,15 @@ D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\W
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.WeatherInformerForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.AddClothesForm.resources
 D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.UserNameAndPasswordForm.resources
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.TestPlatform.AdapterUtilities.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.TestPlatform.CoreUtilities.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.ObjectModel.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\ru\Microsoft.VisualStudio.TestPlatform.TestFramework.resources.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\Microsoft.TestPlatform.AdapterUtilities.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+D:\Programs\JetBrains\Rider Projects\WeatherInformer\WeatherInformer\obj\Debug\WeatherInformer.csproj.CopyComplete
